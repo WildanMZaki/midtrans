@@ -45,6 +45,7 @@ trait ParamSetup
             self::$params = array_merge(self::$params, $params);
             return $this;
         } else {
+            $this->conclude();
             return self::$params;
         }
     }
