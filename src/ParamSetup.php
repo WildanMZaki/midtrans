@@ -20,13 +20,33 @@ trait ParamSetup
     private $customerDetail = [];
 
     // Inv object for generator invoice
-    private $inv;
+    public $inv;
+
+    // Private of Config object
+    public $conf;
 
     // Required For Defining Bank
 
     public function __construct()
     {
         $this->inv = new Inv();
+        $this->conf = new Config();
+    }
+
+    public function config($configName = 'midtrans'): self
+    {
+        $this->conf = new Config($configName);
+        return $this;
+    }
+
+    public function params($params = null): self|array
+    {
+        if (!is_null($params) && is_array($params)) {
+            self::$params = array_merge(self::$params, $params);
+            return $this;
+        } else {
+            return self::$params;
+        }
     }
 
     public function invoice(string|callable $invoice): self
@@ -64,11 +84,25 @@ trait ParamSetup
      *   "name": "Apple"
      * }
      */
-    public function items(array $items = [], bool $countTotal = false, $config = [
+    public function items(array $items = [], $config = [
         'price_column' => 'price',
         'qty_column' => 'qty',
     ])
     {
+        $total = 0;
+        foreach ($items as $i => $item) {
+            $q = isset($item['quantity'])
+                ? $item['quantity']
+                : (isset($item[$config['qty_column']])
+                    ? $item[$config['qty_column']]
+                    : 0);
+            $items[0]['quantity'] = $q;
+            $price = isset($item[$config['price_column']]) ? $item[$config['price_column']] : 0;
+            $items[0]['price'] = $price;
+            $total += $q * $price;
+        }
+        $this->total($total);
+
         $this->items = $items;
         return $this;
     }
@@ -134,10 +168,10 @@ trait ParamSetup
         return $this;
     }
 
-    public static function charge($method = ['bank_transfer' => 'bca'])
+    public static function charge($method = 'bank_transfer', $option = 'bca')
     {
-        self::$method = strtolower(key($method));
-        self::$option = strtolower(reset($method));
+        self::$method = strtolower($method);
+        self::$option = strtolower($option);
 
         self::$params['payment_type'] = self::$method;
 

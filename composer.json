@@ -17,5 +17,6 @@
       "email": "wildanmzaki7@gmail.com"
     }
   ],
-  "minimum-stability": "dev"
+  "minimum-stability": "dev",
+  "version": "1.0.1"
 }

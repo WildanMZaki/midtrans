@@ -7,13 +7,6 @@ use Exception;
 class CoreAPI
 {
     use ParamSetup;
-    private $conf;
-
-    public function __construct()
-    {
-        $this->inv = new Inv();
-        $this->conf = new Config();
-    }
 
     public function send($params = null)
     {

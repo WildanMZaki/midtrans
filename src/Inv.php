@@ -71,8 +71,7 @@ class Inv
 
         $prefix .= $date;
 
-
-        $n = (is_callable($orderNumber)) ? $orderNumber() : $orderNumber;
+        $n = (is_callable($orderNumber)) ? $orderNumber($prefix) : $orderNumber;
         $n = $n ?: 1;
 
         if ($n <= (10 ** $digits) - 1) {
