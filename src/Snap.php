@@ -6,15 +6,7 @@ class Snap
 {
     use ParamSetup;
 
-    private $conf;
-
-    public function __construct()
-    {
-        $this->inv = new Inv();
-        $this->conf = new Config();
-    }
-
-    public static function charge()
+    public static function setup()
     {
         self::$method = 'snap';
         self::$option = 'snap';
@@ -24,6 +16,9 @@ class Snap
 
     public function getToken()
     {
+        self::$method = 'snap';
+        self::$option = 'snap';
+
         $this->conclude();
         $this->conf->midtransInit();
         $snapToken = \Midtrans\Snap::getSnapToken(self::$params);
