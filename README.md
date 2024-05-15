@@ -20,13 +20,13 @@ First, import the necessary classes:
 use WildanMZaki\MidtransCI3\CoreAPI;
 ```
 
-### Initialization
+### Example Usage
 
 To start using the library, initialize the `CoreAPI` class and set up the basic parameters:
 
 ```php
-$response = CoreAPI::method($method, $option)
-    ->config('midtrans')
+// This snippet would getting parameter based on method and option that inputted to the 'method' function
+$params = CoreAPI::method($method, $option)
     ->invoice('JL-1234566')
     ->total(100000)
     ->va('89619925681')
@@ -36,6 +36,37 @@ $response = CoreAPI::method($method, $option)
     ])
     ->params();
 ```
+
+### Methods Description
+
+```php
+::method($method, $option) // initialization method to create instance of CoreAPI object statically
+
+# invoice method
+->invoice($inv)  // To set up order id that would be used in the transaction
+
+// Variasi penggunaan: bisa diisikan callback function yang mereturn data dengan type string
+->invoice(function() {
+    return 'string of order id'
+})
+
+# inv method : similiar with invoice, but it will use library utility to generate the invoice in format Prefix-Ymd000x
+->inv('INV-', 2)  // this would set up order id to 'INV-20240515002'
+
+->inv('INV-', 2, 5) // this variant would set up the order_id to: 'INV-2024-051500001'  (The third parameter is digits it's mean how long the order id number would be set up)
+
+// other variant: use callback that return int in second parameter
+->inv('INV-', function(string $prefix) {
+    // $prefix is prefix that already set up for the invoice including the date when the invoice generated.
+    // This can help you to count how many invoice that have same prefix (get by like query)
+
+    return 5;
+})
+})
+
+```
+
+
 
 ### Additional Options
 
