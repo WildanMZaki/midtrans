@@ -41,8 +41,9 @@ trait ParamSetup
      */
     public static function method($method = 'bank_transfer', $option = 'bca')
     {
+        if (empty($method)) throw new Exception('Payment method can\'t be empty');
         self::$method = strtolower($method);
-        self::$option = strtolower($option);
+        self::$option = strtolower($option ?? '');
 
         self::$params['payment_type'] = self::$method;
 
