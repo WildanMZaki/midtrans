@@ -1,5 +1,5 @@
 {
-  "name": "wildanmzaki/midtrans-ci3",
+  "name": "wildanmzaki/midtrans",
   "description": "This is extension package for using midtrans core api and snap easier",
   "type": "library",
   "require": {
@@ -8,7 +8,7 @@
   "license": "MIT",
   "autoload": {
     "psr-4": {
-      "WildanMZaki\\MidtransCI3\\": "src/"
+      "WildanMZaki\\Midtrans\\": "src/"
     }
   },
   "authors": [
@@ -18,5 +18,5 @@
     }
   ],
   "minimum-stability": "dev",
-  "version": "1.0.4"
+  "version": "1.0.0"
 }

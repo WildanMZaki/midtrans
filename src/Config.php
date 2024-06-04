@@ -1,6 +1,6 @@
 <?php
 
-namespace WildanMZaki\MidtransCI3;
+namespace WildanMZaki\Midtrans;
 
 #[\AllowDynamicProperties]
 class Config
@@ -55,12 +55,6 @@ class Config
 
     public function __construct(string $config = 'midtrans')
     {
-        // Get CodeIgniter instance
-        $this->CI = &get_instance();
-
-        // Load CodeIgniter config
-        $this->CI->load->config($config, false);
-
         $this->init();
     }
 
@@ -69,12 +63,12 @@ class Config
      */
     public function init()
     {
-        self::$serverKey = $this->CI->config->item('midtrans_server_key');
-        self::$clientKey = $this->CI->config->item('midtrans_client_key');
-        self::$isProduction = $this->CI->config->item('midtrans_is_production');
-        self::$isSanitized = $this->CI->config->item('midtrans_is_sanitized');
-        self::$is3ds = $this->CI->config->item('midtrans_is_3ds');
-        self::$invocedMethod = $this->CI->config->item('midtrans_invoiced_method');
+        self::$serverKey = config('midtrans.server_key');
+        self::$clientKey = config('midtrans.client_key');
+        self::$isProduction = config('midtrans.is_production');
+        self::$isSanitized = config('midtrans.is_sanitized');
+        self::$is3ds = config('midtrans.is_3ds');
+        self::$invocedMethod = config('midtrans.invoiced_method');
     }
 
     /**

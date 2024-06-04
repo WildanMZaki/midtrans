@@ -1,6 +1,6 @@
 <?php
 
-namespace WildanMZaki\MidtransCI3;
+namespace WildanMZaki\Midtrans;
 
 class Inv
 {

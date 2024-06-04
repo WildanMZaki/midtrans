@@ -1,13 +1,13 @@
 # MidtransCI3 PHP Library
 
-MidtransCI3 is a PHP library for integrating Midtrans payment gateway into CodeIgniter 3 applications. This library simplifies the process of setting up and making transactions through the Midtrans payment gateway.
+This is PHP library for integrating Midtrans payment gateway into Laravel applications. This library simplifies the process of setting up and making transactions through the Midtrans payment gateway.
 
 ## Installation
 
 You can install this library via Composer:
 
 ```bash
-composer require wildanmzaki/midtrans-ci3
+composer require wildanmzaki/midtrans
 ```
 
 ## Usage
@@ -17,7 +17,7 @@ composer require wildanmzaki/midtrans-ci3
 First, import the necessary classes:
 
 ```php
-use WildanMZaki\MidtransCI3\CoreAPI;
+use WildanMZaki\Midtrans\CoreAPI;
 ```
 
 Next: You can copy midtrans.php file to your application/config directory and change all the value from this file
@@ -42,7 +42,6 @@ $params = CoreAPI::method($method, $option)
     ->params();
 ```
 
-
 ### Sending Payment Request
 
 To send the payment request to the Midtrans API, use the `send()` method:
@@ -52,7 +51,6 @@ $response = CoreAPI::method($method, $option)
     // set up parameters
     ->send();
 ```
-
 
 ### Methods Description
 
@@ -190,7 +188,6 @@ $response = CoreAPI::method($method, $option)
 
 ```
 
-
 ### Other Example
 
 You can set additional options such as items, customer details, and card tokens using the provided methods:
@@ -228,7 +225,6 @@ $response = CoreAPI::method($method, $option)
     ])
     ->params();
 ```
-
 
 ### Handling Responses
 
