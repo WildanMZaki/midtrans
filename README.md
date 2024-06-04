@@ -1,4 +1,4 @@
-# MidtransCI3 PHP Library
+# Midtrans PHP Library
 
 This is PHP library for integrating Midtrans payment gateway into Laravel applications. This library simplifies the process of setting up and making transactions through the Midtrans payment gateway.
 
